@@ -140,7 +140,7 @@ class _SentenceBuildingGameScreenState
     final endTime = DateTime.now();
     final duration = endTime.difference(startTime).inMinutes;
 
-    saveGameProgress('لعبة تكوين الجمل', duration);
+    saveGameProgress('لعبة تكوين الجُمل', duration);
     super.dispose();
   }
 
@@ -182,13 +182,13 @@ class _SentenceBuildingGameScreenState
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        centerTitle: true, // Ensures the title is centered
+        centerTitle: true,
         title: const Text(
           'لعبة تكوين الجُمل',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Colors.black, // Adjust color as needed
+            color: Colors.black,
           ),
         ),
         leading: IconButton(
