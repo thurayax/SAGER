@@ -17,7 +17,6 @@ dependencies:
   flutter_tts: ^4.2.1
   audioplayers: ^6.1.0
   fl_chart: ^0.70.1 
-  
 
 dev_dependencies:
   flutter_test:
@@ -28,21 +27,21 @@ flutter:
   uses-material-design: true
 
   assets:
-   #//الصور
+    # الصور
     - assets/images/Blue and Green.png
     - assets/images/apple.jpg
     - assets/images/Blue.png
     - assets/images/Ellipse 25.png
     - assets/images/story BG.png
     - assets/images/game BG.png
-  
 
-    #الصور للقصص
+    # الصور للقصص
     - assets/images/forest.png
     - assets/images/friends.png
     - assets/images/kingdom.png
 
-  #//الاصوات 
+    # sentence_game
+    - assets/images/sentence_game/
 
-    
-    
+  # الاصوات
+  # Add your audio assets here (if any)
