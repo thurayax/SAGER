@@ -182,13 +182,19 @@ class _SentenceBuildingGameScreenState
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Center(
-          child: Text('لعبة تكوين الجمل'),
+        centerTitle: true, // Ensures the title is centered
+        title: const Text(
+          'لعبة تكوين الجُمل',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black, // Adjust color as needed
+          ),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pop(context); // Return to the previous screen
           },
         ),
       ),
