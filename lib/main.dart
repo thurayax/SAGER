@@ -1,3 +1,4 @@
+import 'package:autism_app/screens/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -35,15 +36,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Autism App',
+      title: 'ساجـر',
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
+      initialRoute: '/register',
       routes: {
         '/login': (context) => LoginScreen(),
         '/register': (context) => RegistrationScreen(),
+        '/reset_password': (context) => ResetPasswordScreen(),
         '/games': (context) => games.GamesHomeScreen(),
         '/home': (context) => home.HomeScreen(),
         '/simulation_game': (context) => SimulationGameScreen(),
@@ -51,7 +53,8 @@ class MyApp extends StatelessWidget {
         '/picture_sentence': (context) => SentenceBuildingGameScreen(),
         '/gameslist': (context) => GamesListScreen(),
         '/storieslist': (context) => StoriesListScreen(),
-        '/number_drawing': (context) => NumbersLearningGame(), // إضافة اللعبة الجديدة
+        '/number_drawing': (context) =>
+            NumbersLearningGame(), // إضافة اللعبة الجديدة
         '/settings': (context) => SettingsScreen(),
         '/progress': (context) => ProgressScreen(),
       },
