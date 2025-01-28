@@ -66,13 +66,12 @@ class _ArabicLearningScreenState extends State<ArabicLearningScreen> {
 
   Future<void> saveGameProgress(String gameName, int duration) async {
     try {
-      final response = await Supabase.instance.client
-          .from('game_progress')
-          .insert({
-            'game_name': gameName,
-            'duration': duration,
-            'date_played': DateTime.now().toIso8601String(),
-          });
+      final response =
+          await Supabase.instance.client.from('game_progress').insert({
+        'game_name': gameName,
+        'duration': duration,
+        'date_played': DateTime.now().toIso8601String(),
+      });
 
       if (response.isEmpty) {
         print('No data saved. Please check your request.');
@@ -93,99 +92,116 @@ class _ArabicLearningScreenState extends State<ArabicLearningScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('لعبة التوصيل'),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        title: const Text(
+          'لعبة الحروف العربية',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // العودة إلى الصفحة السابقة
+            Navigator.pop(context); // Return to the previous screen
           },
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            flex: 2,
-            child: GridView.builder(
-              padding: EdgeInsets.all(16.0),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-              ),
-              itemCount: targetImages.length,
-              itemBuilder: (context, index) {
-                return DragTarget<String>(
-                  onAccept: (letter) {
-                    if (letter == targetImages[index]['letter']) {
-                      setState(() {
-                        draggableLetters.remove(letter);
-                        targetImages[index]['letter'] = '';
-                      });
-                      speak(targetImages[index]['word']!);
-                    }
-                  },
-                  builder: (context, candidateData, rejectedData) {
-                    return Card(
-                      color: targetImages[index]['letter']!.isEmpty
-                          ? Colors.greenAccent
-                          : Colors.white,
-                      elevation: 4,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            targetImages[index]['image']!,
-                            height: 80,
-                            fit: BoxFit.contain,
-                          ),
-                          if (targetImages[index]['letter']!.isEmpty)
-                            Icon(Icons.check, color: Colors.white, size: 30),
-                        ],
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFFB8E1FC), Color(0xFFD7F8FF)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
-          Expanded(
-            flex: 1,
-            child: GridView.builder(
-              padding: EdgeInsets.all(16.0),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 6,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 2,
+              child: GridView.builder(
+                padding: EdgeInsets.all(16.0),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                itemCount: targetImages.length,
+                itemBuilder: (context, index) {
+                  return DragTarget<String>(
+                    onAccept: (letter) {
+                      if (letter == targetImages[index]['letter']) {
+                        setState(() {
+                          draggableLetters.remove(letter);
+                          targetImages[index]['letter'] = '';
+                        });
+                        speak(targetImages[index]['word']!);
+                      }
+                    },
+                    builder: (context, candidateData, rejectedData) {
+                      return Card(
+                        color: targetImages[index]['letter']!.isEmpty
+                            ? Colors.greenAccent
+                            : Colors.white,
+                        elevation: 6,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              targetImages[index]['image']!,
+                              height: 80,
+                              fit: BoxFit.contain,
+                            ),
+                            if (targetImages[index]['letter']!.isEmpty)
+                              Icon(Icons.check, color: Colors.white, size: 30),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
-              itemCount: draggableLetters.length,
-              itemBuilder: (context, index) {
-                return Draggable<String>(
-                  data: draggableLetters[index],
-                  child: WordCard(
-                    letter: draggableLetters[index],
-                  ),
-                  feedback: Material(
-                    color: Colors.transparent,
-                    child: WordCard(
-                      letter: draggableLetters[index],
-                      isDragging: true,
-                    ),
-                  ),
-                  childWhenDragging: Opacity(
-                    opacity: 0.5,
+            ),
+            Expanded(
+              flex: 1,
+              child: GridView.builder(
+                padding: EdgeInsets.all(16.0),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 6,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                itemCount: draggableLetters.length,
+                itemBuilder: (context, index) {
+                  return Draggable<String>(
+                    data: draggableLetters[index],
                     child: WordCard(
                       letter: draggableLetters[index],
                     ),
-                  ),
-                );
-              },
+                    feedback: Material(
+                      color: Colors.transparent,
+                      child: WordCard(
+                        letter: draggableLetters[index],
+                        isDragging: true,
+                      ),
+                    ),
+                    childWhenDragging: Opacity(
+                      opacity: 0.5,
+                      child: WordCard(
+                        letter: draggableLetters[index],
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -200,18 +216,33 @@ class WordCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: isDragging ? Colors.blueAccent : Colors.white,
-      elevation: isDragging ? 8.0 : 4.0,
+      elevation: isDragging ? 10.0 : 6.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
       ),
-      child: Center(
-        child: Text(
-          letter,
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-            color: isDragging ? Colors.white : Colors.black,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: isDragging
+              ? LinearGradient(
+                  colors: [Colors.deepOrange, Colors.orangeAccent],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                )
+              : LinearGradient(
+                  colors: [Colors.white, Colors.grey[200]!],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        child: Center(
+          child: Text(
+            letter,
+            style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              color: isDragging ? Colors.white : Colors.black,
+            ),
           ),
         ),
       ),
