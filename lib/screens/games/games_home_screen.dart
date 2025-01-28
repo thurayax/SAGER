@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class GamesHomeScreen extends StatelessWidget {
-  final String? username; // جعل المتغير اختياريًا
+  final String? username;
 
-  GamesHomeScreen({this.username}); // إزالة required
+  GamesHomeScreen({this.username});
 
   @override
   Widget build(BuildContext context) {
@@ -13,60 +13,69 @@ class GamesHomeScreen extends StatelessWidget {
           // الخلفية
           Positioned.fill(
             child: Image.asset(
-              'assets/images/Blue.png', // قم بتغيير المسار إلى مسار خلفيتك
+              'assets/images/Blue.png', // مسار الخلفية
               fit: BoxFit.cover,
             ),
           ),
-          // المحتوى
+          // زر العودة وزر الإعدادات
           SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // زر العودة
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0, top: 16.0),
-                  child: GestureDetector(
-                    onTap: () {
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0), // تعديل المسافات حول الأزرار
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // زر العودة
+                  IconButton(
+                    onPressed: () {
                       Navigator.pop(context); // العودة للصفحة السابقة
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            blurRadius: 6,
-                            spreadRadius: 2,
-                          ),
-                        ],
-                      ),
-                      padding: const EdgeInsets.all(8),
-                      child: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.blue,
-                        size: 28,
-                      ),
+                    icon: const Icon(
+                      Icons.arrow_back, // أيقونة الرجوع
+                      size: 50, // الحجم
+                      color: Color.fromARGB(255, 238, 184, 59), // اللون
                     ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                // النص الترحيبي
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Text(
-                    'أهلاً صديقنا $username',
-                    style: const TextStyle(
-                      fontSize: 28, // تكبير النص الترحيبي
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blue,
+                  // زر الإعدادات
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/settings'); // الانتقال لصفحة الإعدادات
+                    },
+                    icon: const Icon(
+                      Icons.settings, // أيقونة الإعدادات
+                      size: 50, // الحجم
+                      color: Color.fromARGB(255, 238, 184, 59), // اللون
                     ),
-                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // النص الترحيبي
+          Column(
+            children: [
+              const SizedBox(height: 100), // مسافة من الأعلى
+              Center(
+                child: Text(
+                  'أهلًا صديقنا ${username ?? "الصغير"}', // النص الترحيبي مع اسم الطفل
+                  style: const TextStyle(
+                    fontSize: 35, // حجم النص
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 20, 85, 129), // لون النص
+                    shadows: [
+                      Shadow(
+                        offset: Offset(2, 2),
+                        blurRadius: 5,
+                        color: Colors.black26, // تأثير الظل
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 40),
-                // مربعات الألعاب والقصص
-                Center(
+              ),
+              const SizedBox(height: 40), // مسافة بين النص والمربعات
+              // مربعات الألعاب والقصص
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0), // مسافات جانبية حول المحتوى
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -83,35 +92,13 @@ class GamesHomeScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(25),
                               ),
                               child: Container(
-                                width: 220, // العرض
-                                height: 300, // الارتفاع
+                                width: 220, // عرض أكبر قليلاً
+                                height: 320, // ارتفاع أكبر قليلاً
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(25),
                                   image: const DecorationImage(
-                                    image: AssetImage('assets/images/story BG.png'),
+                                    image: AssetImage('assets/images/hstory.png'),
                                     fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 20,
-                              left: 0,
-                              right: 0,
-                              child: Center(
-                                child: Text(
-                                  'قائمة القصص',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    shadows: [
-                                      Shadow(
-                                        offset: Offset(1, 1),
-                                        blurRadius: 5,
-                                        color: Colors.black,
-                                      ),
-                                    ],
                                   ),
                                 ),
                               ),
@@ -132,35 +119,13 @@ class GamesHomeScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(25),
                               ),
                               child: Container(
-                                width: 220, // العرض
-                                height: 300, // الارتفاع
+                                width: 220, // عرض أكبر قليلاً
+                                height: 320, // ارتفاع أكبر قليلاً
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(25),
                                   image: const DecorationImage(
-                                    image: AssetImage('assets/images/game BG.png'),
+                                    image: AssetImage('assets/images/hgames.png'),
                                     fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 20,
-                              left: 0,
-                              right: 0,
-                              child: Center(
-                                child: Text(
-                                  'قائمة الألعاب',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    shadows: [
-                                      Shadow(
-                                        offset: Offset(1, 1),
-                                        blurRadius: 5,
-                                        color: Colors.black,
-                                      ),
-                                    ],
                                   ),
                                 ),
                               ),
@@ -171,8 +136,8 @@ class GamesHomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

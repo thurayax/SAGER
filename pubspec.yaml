@@ -16,8 +16,9 @@ dependencies:
   supabase_flutter: ^2.8.3
   flutter_tts: ^4.2.1
   audioplayers: ^6.1.0
-  fl_chart: ^0.70.1 
-  
+  fl_chart: ^0.70.1
+  http: ^0.13.6
+  dialog_flowtter: ^0.3.3
 
 dev_dependencies:
   flutter_test:
@@ -28,21 +29,24 @@ flutter:
   uses-material-design: true
 
   assets:
-   #//الصور
+    # الصور
     - assets/images/Blue and Green.png
     - assets/images/apple.jpg
     - assets/images/Blue.png
     - assets/images/Ellipse 25.png
-    - assets/images/story BG.png
-    - assets/images/game BG.png
-  
+    - assets/images/hstory.png
+    - assets/images/hgames.png
+    - assets/images/sajerlogo.png
+    - assets/images/sa.png
+    - assets/images/A.png
+    - assets/images/m.png
+    - assets/images/num.png
+    - assets/images/learning.png
 
-    #الصور للقصص
+    # الصور للقصص
     - assets/images/forest.png
     - assets/images/friends.png
     - assets/images/kingdom.png
 
-  #//الاصوات 
-
-    
-    
+    # مفتاح Dialogflow
+    - assets/dialogflow_key.json

@@ -1,3 +1,4 @@
+import 'package:autism_app/screens/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -16,7 +17,9 @@ import 'package:autism_app/screens/home_screen.dart' as home;
 import 'screens/settings_screen.dart';
 import 'screens/progress_screen.dart';
 import 'screens/games/story.dart';
-
+import 'screens/parent_login_screen.dart';
+import 'screens/parent_dashboard.dart';
+import 'screens/parent_chatbot_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -40,10 +43,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
+      initialRoute: '/parent_login',
       routes: {
         '/login': (context) => LoginScreen(),
         '/register': (context) => RegistrationScreen(),
+         '/reset_password': (context) => ResetPasswordScreen(),
         '/games': (context) => games.GamesHomeScreen(),
         '/home': (context) => home.HomeScreen(),
         '/simulation_game': (context) => SimulationGameScreen(),
@@ -51,9 +55,14 @@ class MyApp extends StatelessWidget {
         '/picture_sentence': (context) => SentenceBuildingGameScreen(),
         '/gameslist': (context) => GamesListScreen(),
         '/storieslist': (context) => StoriesListScreen(),
-        '/number_drawing': (context) => NumbersLearningGame(), // إضافة اللعبة الجديدة
+           '/number_drawing': (context) =>
+            NumbersLearningGame(), // إضافة اللعبة الجديدة
         '/settings': (context) => SettingsScreen(),
         '/progress': (context) => ProgressScreen(),
+        '/parent_login': (context) => ParentLoginScreen(),
+        '/parent_dashboard': (context) => ParentDashboard(),
+          '/chatbot': (context) => ParentChatbotScreen(),
+
       },
       onGenerateRoute: (settings) {
         if (settings.name == '/story_game') {

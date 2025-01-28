@@ -39,33 +39,34 @@ class StoriesListScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          // زر الرجوع
-          Positioned(
-            top: 40,
-            left: 20,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.pop(context); // الرجوع إلى الصفحة السابقة
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      blurRadius: 5,
-                      spreadRadius: 2,
-                    ),
-                  ],
+          // زر الرجوع وزر الإعدادات
+          SafeArea(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // زر الرجوع
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context); // الرجوع إلى الصفحة السابقة
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back, // سهم الرجوع
+                    size: 60, // تكبير الحجم
+                    color: Color.fromARGB(255, 238, 184, 59), // لون السهم
+                  ),
                 ),
-                padding: const EdgeInsets.all(8),
-                child: const Icon(
-                  Icons.arrow_back,
-                  size: 24,
-                  color: Colors.black,
+                // زر الإعدادات
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/settings'); // الانتقال لصفحة الإعدادات
+                  },
+                  icon: const Icon(
+                    Icons.settings, // أيقونة الإعدادات
+                    size: 60, // تكبير الحجم
+                    color: Color.fromARGB(255, 238, 184, 59), // لون الترس
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
           // المحتوى

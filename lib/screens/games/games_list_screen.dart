@@ -4,80 +4,108 @@ class GamesListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('قائمة الألعاب'),
-        centerTitle: true,
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.blue.shade100, Colors.green.shade100],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, // عدد العناصر في الصف الواحد
-              crossAxisSpacing: 16, // المسافة الأفقية بين العناصر
-              mainAxisSpacing: 16, // المسافة العمودية بين العناصر
+      body: Stack(
+        children: [
+          // الخلفية
+          Positioned.fill(
+            child: Image.asset(
+              'assets/images/Blue and Green.png', // صورة الخلفية
+              fit: BoxFit.cover,
             ),
-            itemCount: 4, // عدد الألعاب
-            itemBuilder: (context, index) {
-              // تحديد محتوى البطاقة بناءً على الفهرس
-              switch (index) {
-                case 0:
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/picture_sentence');
-                    },
-                    child: const GameCard(
-                      title: 'تكوين الجمل',
-                      icon: Icons.text_fields,
-                      color: Colors.orange,
-                    ),
-                  );
-                case 1:
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/simulation_game');
-                    },
-                    child: const GameCard(
-                      title: 'لعبة المحاكاة',
-                      icon: Icons.computer,
-                      color: Colors.blue,
-                    ),
-                  );
-                case 2:
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/arabic_learning');
-                    },
-                    child: const GameCard(
-                      title: 'تعلم العربية',
-                      icon: Icons.language,
-                      color: Colors.green,
-                    ),
-                  );
-                case 3:
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/number_drawing');
-                    },
-                    child: const GameCard(
-                      title: 'لعبة تعلم الأرقام',
-                      icon: Icons.calculate,
-                      color: Colors.purple,
-                    ),
-                  );
-                default:
-                  return const SizedBox.shrink(); // عنصر فارغ
-              }
-            },
           ),
-        ),
+          // زر العودة وزر الإعدادات
+          SafeArea(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // زر العودة
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context); // العودة للصفحة السابقة
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    size: 40, // حجم أكبر للأيقونة
+                    color: Colors.black,
+                  ),
+                ),
+                // زر الإعدادات
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/settings'); // الانتقال إلى صفحة الإعدادات
+                  },
+                  icon: const Icon(
+                    Icons.settings,
+                    size: 40,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // المحتوى
+          Column(
+            children: [
+              const SizedBox(height: 80), // مسافة من الأعلى
+              
+              const SizedBox(height: 40), // مسافة بين النص والمربعات
+              // الألعاب في صف واحد
+              Expanded(
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      // مربع 1
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/picture_sentence');
+                        },
+                        child: GameCard(
+                          title: 'تكوين الجمل',
+                          imagePath: 'assets/images/learning.png',
+                          backgroundColor: const Color(0xFFB2D8B1), // اللون الأخضر
+                        ),
+                      ),
+                      // مربع 2
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/simulation_game');
+                        },
+                        child: GameCard(
+                          title: 'لعبة المحاكاة',
+                          imagePath: 'assets/images/m.png',
+                          backgroundColor: const Color(0xFFFEE8A5), // اللون الأصفر
+                        ),
+                      ),
+                      // مربع 3
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/arabic_learning');
+                        },
+                        child: GameCard(
+                          title: 'تعلم العربية',
+                          imagePath: 'assets/images/A.png',
+                          backgroundColor: const Color(0xFFF7C5D8), // اللون الوردي
+                        ),
+                      ),
+                      // مربع 4
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/number_drawing');
+                        },
+                        child: GameCard(
+                          title: 'لعبة تعلم الأرقام',
+                          imagePath: 'assets/images/num.png',
+                          backgroundColor: const Color(0xFFD6E0F0), // اللون الأزرق الفاتح
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -85,47 +113,53 @@ class GamesListScreen extends StatelessWidget {
 
 class GameCard extends StatelessWidget {
   final String title;
-  final IconData icon;
-  final Color color;
+  final String imagePath;
+  final Color backgroundColor;
 
   const GameCard({
     required this.title,
-    required this.icon,
-    required this.color,
+    required this.imagePath,
+    required this.backgroundColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 150, // العرض
+      height: 200, // الارتفاع
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: Colors.white,
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black26,
             blurRadius: 6,
-            spreadRadius: 2,
+            offset: Offset(0, 3),
           ),
         ],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CircleAvatar(
-            radius: 40,
-            backgroundColor: color.withOpacity(0.2),
-            child: Icon(
-              icon,
-              size: 40,
-              color: color,
+          // أيقونة اللعبة
+          Container(
+            width: 80, // عرض الأيقونة المصغرة
+            height: 80, // ارتفاع الأيقونة المصغرة
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(imagePath),
+                fit: BoxFit.contain,
+              ),
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 10), // مسافة بين الأيقونة والنص
+          // نص اللعبة
           Text(
             title,
             style: const TextStyle(
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.bold,
+              color: Colors.black, // لون النص
             ),
             textAlign: TextAlign.center,
           ),
