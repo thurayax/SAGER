@@ -250,9 +250,10 @@ class _SentenceBuildingGameScreenState
                   borderRadius: BorderRadius.circular(16),
                 ),
               ),
-              child: Text(
-                'احذف الكلمة الأخيرة',
-                style: TextStyle(fontSize: 16, color: Colors.white),
+              child: Icon(
+                Icons.delete,
+                size: 30,
+                color: Colors.white,
               ),
             ),
             SizedBox(height: 20),
