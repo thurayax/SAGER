@@ -32,79 +32,87 @@ class StoriesListScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // الخلفية
           Positioned.fill(
             child: Image.asset(
-              'assets/images/Blue.png', // استبدل هذا بمسار الخلفية الخاص بك
+              'assets/images/Blue and Green.png',
               fit: BoxFit.cover,
             ),
           ),
-          // زر الرجوع وزر الإعدادات
           SafeArea(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // زر الرجوع
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context); // الرجوع إلى الصفحة السابقة
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back, // سهم الرجوع
-                    size: 60, // تكبير الحجم
-                    color: Color.fromARGB(255, 238, 184, 59), // لون السهم
-                  ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(
+                  Icons.arrow_back,
+                  size: 60,
+                  color: Color.fromARGB(255, 238, 184, 59),
                 ),
-                // زر الإعدادات
-                IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/settings'); // الانتقال لصفحة الإعدادات
-                  },
-                  icon: const Icon(
-                    Icons.settings, // أيقونة الإعدادات
-                    size: 60, // تكبير الحجم
-                    color: Color.fromARGB(255, 238, 184, 59), // لون الترس
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
-          // المحتوى
-          Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: stories.map((story) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => StoryBookScreen(story: story),
+          Column(
+            children: [
+              const SizedBox(height: 100), // مسافة من الأعلى
+              Center(
+                child: const Text(
+                  'قائمة القصص ',
+                  style: TextStyle(
+                    fontSize: 35, // حجم النص
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 20, 85, 129), // لون النص
+                    shadows: [
+                      Shadow(
+                        offset: Offset(2, 2),
+                        blurRadius: 5,
+                        color: Colors.black26, // تأثير الظل
                       ),
-                    );
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 16),
-                    width: 200, // تكبير العرض
-                    height: 300, // تكبير الارتفاع
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20), // زوايا دائرية
-                      image: DecorationImage(
-                        image: AssetImage(story.imagePath),
-                        fit: BoxFit.cover,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.6),
-                          spreadRadius: 4,
-                          blurRadius: 8,
-                        ),
-                      ],
-                    ),
+                    ],
                   ),
-                );
-              }).toList(),
-            ),
+                ),
+              ),
+              const SizedBox(height: 40),
+              Expanded(
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: stories.map((story) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => StoryBookScreen(story: story),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 20),
+                          width: 200,
+                          height: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            image: DecorationImage(
+                              image: AssetImage(story.imagePath),
+                              fit: BoxFit.cover,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.6),
+                                spreadRadius: 4,
+                                blurRadius: 8,
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -129,7 +137,6 @@ class _StoryBookScreenState extends State<StoryBookScreen> {
   @override
   void initState() {
     super.initState();
-    // تقسيم النص إلى صفحات بناءً على الفقرات
     _storyPages = widget.story.content.split("\n\n");
   }
 
@@ -149,7 +156,7 @@ class _StoryBookScreenState extends State<StoryBookScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // الرجوع إلى الصفحة السابقة
+            Navigator.pop(context);
           },
         ),
       ),

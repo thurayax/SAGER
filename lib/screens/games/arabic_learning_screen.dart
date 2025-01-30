@@ -12,39 +12,155 @@ class _ArabicLearningScreenState extends State<ArabicLearningScreen> {
 
   // قائمة جميع الحروف العربية مع الكلمات والصور
   final List<Map<String, String>> lettersWithImages = [
-    {'letter': 'أ', 'image': 'assets/images/rabbit.png', 'word': 'أرنب'},
-    {'letter': 'ب', 'image': 'assets/images/duck.png', 'word': 'بطة'},
+    {
+      'letter': 'أ',
+      'image': 'assets/images/arabic_learning_game/أرنب.jpg',
+      'word': 'أرنب'
+    },
+    {
+      'letter': 'ب',
+      'image': 'assets/images/arabic_learning_game/بطة.jpg',
+      'word': 'بطة'
+    },
     {'letter': 'ت', 'image': 'assets/images/apple.jpg', 'word': 'تفاحة'},
-    {'letter': 'ث', 'image': 'assets/images/fox.png', 'word': 'ثعلب'},
-    {'letter': 'ج', 'image': 'assets/images/carrot.png', 'word': 'جزر'},
-    {'letter': 'ح', 'image': 'assets/images/cake.png', 'word': 'حلوى'},
-    {'letter': 'خ', 'image': 'assets/images/bread.png', 'word': 'خبز'},
-    {'letter': 'د', 'image': 'assets/images/house.png', 'word': 'دار'},
-    {'letter': 'ذ', 'image': 'assets/images/flower.png', 'word': 'ذرة'},
-    {'letter': 'ر', 'image': 'assets/images/feather.png', 'word': 'ريشة'},
-    {'letter': 'ز', 'image': 'assets/images/plant.png', 'word': 'زهرة'},
-    {'letter': 'س', 'image': 'assets/images/fish.png', 'word': 'سمكة'},
-    {'letter': 'ش', 'image': 'assets/images/sun.png', 'word': 'شمس'},
-    {'letter': 'ص', 'image': 'assets/images/box.png', 'word': 'صندوق'},
-    {'letter': 'ض', 'image': 'assets/images/plate.png', 'word': 'طبق'},
-    {'letter': 'ط', 'image': 'assets/images/crown.png', 'word': 'طاووس'},
-    {'letter': 'ظ', 'image': 'assets/images/shadow.png', 'word': 'ظل'},
-    {'letter': 'ع', 'image': 'assets/images/eye.png', 'word': 'عين'},
-    {'letter': 'غ', 'image': 'assets/images/cloud.png', 'word': 'غيمة'},
-    {'letter': 'ف', 'image': 'assets/images/elephant.png', 'word': 'فيل'},
-    {'letter': 'ق', 'image': 'assets/images/pen.png', 'word': 'قلم'},
-    {'letter': 'ك', 'image': 'assets/images/book.png', 'word': 'كتاب'},
-    {'letter': 'ل', 'image': 'assets/images/lemon.png', 'word': 'ليمون'},
-    {'letter': 'م', 'image': 'assets/images/mountain.png', 'word': 'جبل'},
-    {'letter': 'ن', 'image': 'assets/images/star.png', 'word': 'نجمة'},
-    {'letter': 'هـ', 'image': 'assets/images/flower2.png', 'word': 'هلال'},
-    {'letter': 'و', 'image': 'assets/images/rose.png', 'word': 'وردة'},
-    {'letter': 'ي', 'image': 'assets/images/hand.png', 'word': 'يد'},
+    {
+      'letter': 'ث',
+      'image': 'assets/images/arabic_learning_game/ثعلب.jpg',
+      'word': 'ثعلب'
+    },
+    {
+      'letter': 'ث',
+      'image': 'assets/images/arabic_learning_game/ثعلب.jpg',
+      'word': 'ثعلب'
+    },
+    {
+      'letter': 'ج',
+      'image': 'assets/images/arabic_learning_game/جمل.jpg',
+      'word': 'جمل'
+    },
+    {
+      'letter': 'ح',
+      'image': 'assets/images/arabic_learning_game/حصان.jpg',
+      'word': 'حصان'
+    },
+    {
+      'letter': 'خ',
+      'image': 'assets/images/arabic_learning_game/خيار.jpg',
+      'word': 'خيار'
+    },
+    {
+      'letter': 'د',
+      'image': 'assets/images/arabic_learning_game/دجاجة.jpg',
+      'word': 'دجاجة'
+    },
+    {
+      'letter': 'ذ',
+      'image': 'assets/images/arabic_learning_game/ذئب.jpg',
+      'word': 'ذئب'
+    },
+    {
+      'letter': 'ر',
+      'image': 'assets/images/arabic_learning_game/رمان.jpg',
+      'word': 'رمان'
+    },
+    {
+      'letter': 'ز',
+      'image': 'assets/images/arabic_learning_game/زرافة.jpg',
+      'word': 'زرافة'
+    },
+    {
+      'letter': 'س',
+      'image': 'assets/images/arabic_learning_game/سمكة.jpg',
+      'word': 'سمكة'
+    },
+    {
+      'letter': 'ش',
+      'image': 'assets/images/arabic_learning_game/شمس.jpg',
+      'word': 'شمس'
+    },
+    {
+      'letter': 'ص',
+      'image': 'assets/images/arabic_learning_game/صقر.jpg',
+      'word': 'صقر'
+    },
+    {
+      'letter': 'ض',
+      'image': 'assets/images/arabic_learning_game/ضفدع.jpg',
+      'word': 'ضفدع'
+    },
+    {
+      'letter': 'ط',
+      'image': 'assets/images/arabic_learning_game/طائرة.jpg',
+      'word': 'طائرة'
+    },
+    {
+      'letter': 'ظ',
+      'image': 'assets/images/arabic_learning_game/ظرف.jpg',
+      'word': 'ظرف'
+    },
+    {
+      'letter': 'ع',
+      'image': 'assets/images/arabic_learning_game/عنب.jpg',
+      'word': 'عنب'
+    },
+    {
+      'letter': 'غ',
+      'image': 'assets/images/arabic_learning_game/غزال.jpg',
+      'word': 'غزال'
+    },
+    {
+      'letter': 'ف',
+      'image': 'assets/images/arabic_learning_game/فيل.jpg',
+      'word': 'فيل'
+    },
+    {
+      'letter': 'ق',
+      'image': 'assets/images/arabic_learning_game/قمر.jpg',
+      'word': 'قمر'
+    },
+    {
+      'letter': 'ك',
+      'image': 'assets/images/arabic_learning_game/كتاب.jpg',
+      'word': 'كتاب'
+    },
+    {
+      'letter': 'ل',
+      'image': 'assets/images/arabic_learning_game/ليمون.jpg',
+      'word': 'ليمون'
+    },
+    {
+      'letter': 'م',
+      'image': 'assets/images/arabic_learning_game/موز.jpg',
+      'word': 'موز'
+    },
+    {
+      'letter': 'ن',
+      'image': 'assets/images/arabic_learning_game/نمر.jpg',
+      'word': 'نمر'
+    },
+    {
+      'letter': 'هـ',
+      'image': 'assets/images/arabic_learning_game/هرم.jpg',
+      'word': 'هرم'
+    },
+    {
+      'letter': 'و',
+      'image': 'assets/images/arabic_learning_game/وردة.jpg',
+      'word': 'وردة'
+    },
+    {
+      'letter': 'ي',
+      'image': 'assets/images/arabic_learning_game/يد.jpg',
+      'word': 'يد'
+    },
   ];
 
   List<String> draggableLetters = [];
   List<Map<String, String>> targetImages = [];
   late DateTime startTime;
+  int attempts = 0;
+  int successes = 0;
+  int failures = 0;
 
   @override
   void initState() {
@@ -52,7 +168,11 @@ class _ArabicLearningScreenState extends State<ArabicLearningScreen> {
     draggableLetters = lettersWithImages.map((e) => e['letter']!).toList();
     targetImages = [...lettersWithImages];
     targetImages.shuffle();
-    startTime = DateTime.now(); // وقت بدء اللعبة
+    startTime = DateTime.now();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showInstructions();
+    });
   }
 
   @override
@@ -60,17 +180,19 @@ class _ArabicLearningScreenState extends State<ArabicLearningScreen> {
     final endTime = DateTime.now();
     final duration = endTime.difference(startTime).inMinutes;
 
-    saveGameProgress('لعبة التوصيل', duration); // تسجيل التقدم عند الخروج
+    saveGameProgress('لعبة الحروف', duration);
     super.dispose();
   }
 
   Future<void> saveGameProgress(String gameName, int duration) async {
     try {
-      final response =
-          await Supabase.instance.client.from('game_progress').insert({
+      final response = await Supabase.instance.client.from('game_progress').insert({
         'game_name': gameName,
         'duration': duration,
         'date_played': DateTime.now().toIso8601String(),
+        'attempts': attempts,
+        'success': successes,
+        'failures': failures,
       });
 
       if (response.isEmpty) {
@@ -86,6 +208,67 @@ class _ArabicLearningScreenState extends State<ArabicLearningScreen> {
   Future<void> speak(String text) async {
     await tts.setLanguage("ar");
     await tts.speak(text);
+  }
+
+  void showPopup(String message, bool isSuccess) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+          title: Text(isSuccess ? 'أحسنت!' : 'حاول مجددًا',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: isSuccess ? Colors.green : Colors.red,
+              )),
+          content: Text(
+            message,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('موافق', style: TextStyle(fontSize: 18)),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void showInstructions() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+          title: Text('تعليمات اللعبة',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              )),
+          content: Text(
+            'مرحباً بك في لعبة الحروف! اسحب الحرف المناسب إلى الصورة الصحيحة لتعلم الحروف بطريقة ممتعة.',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('ابدأ', style: TextStyle(fontSize: 18)),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -105,7 +288,7 @@ class _ArabicLearningScreenState extends State<ArabicLearningScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // Return to the previous screen
+            Navigator.pop(context);
           },
         ),
       ),
@@ -132,12 +315,18 @@ class _ArabicLearningScreenState extends State<ArabicLearningScreen> {
                 itemBuilder: (context, index) {
                   return DragTarget<String>(
                     onAccept: (letter) {
+                      attempts++;
                       if (letter == targetImages[index]['letter']) {
+                        successes++;
                         setState(() {
                           draggableLetters.remove(letter);
                           targetImages[index]['letter'] = '';
                         });
                         speak(targetImages[index]['word']!);
+                        showPopup('لقد قمت باختيار الحرف الصحيح!', true);
+                      } else {
+                        failures++;
+                        showPopup('هذا ليس الحرف الصحيح، حاول مرة أخرى.', false);
                       }
                     },
                     builder: (context, candidateData, rejectedData) {
@@ -154,7 +343,7 @@ class _ArabicLearningScreenState extends State<ArabicLearningScreen> {
                           children: [
                             Image.asset(
                               targetImages[index]['image']!,
-                              height: 80,
+                              height: 100,
                               fit: BoxFit.contain,
                             ),
                             if (targetImages[index]['letter']!.isEmpty)

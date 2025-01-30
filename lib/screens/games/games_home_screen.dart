@@ -17,36 +17,19 @@ class GamesHomeScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          // زر العودة وزر الإعدادات
+          // زر العودة
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0), // تعديل المسافات حول الأزرار
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // زر العودة
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context); // العودة للصفحة السابقة
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back, // أيقونة الرجوع
-                      size: 50, // الحجم
-                      color: Color.fromARGB(255, 238, 184, 59), // اللون
-                    ),
-                  ),
-                  // زر الإعدادات
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/settings'); // الانتقال لصفحة الإعدادات
-                    },
-                    icon: const Icon(
-                      Icons.settings, // أيقونة الإعدادات
-                      size: 50, // الحجم
-                      color: Color.fromARGB(255, 238, 184, 59), // اللون
-                    ),
-                  ),
-                ],
+              padding: const EdgeInsets.only(left: 20.0, top: 10.0), // تعديل المسافات حول الأزرار
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context); // العودة للصفحة السابقة
+                },
+                icon: const Icon(
+                  Icons.arrow_back, // أيقونة الرجوع
+                  size: 50, // الحجم
+                  color: Color.fromARGB(255, 238, 184, 59), // اللون
+                ),
               ),
             ),
           ),

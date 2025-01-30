@@ -13,41 +13,43 @@ class GamesListScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          // زر العودة وزر الإعدادات
+          // زر العودة
           SafeArea(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // زر العودة
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context); // العودة للصفحة السابقة
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    size: 40, // حجم أكبر للأيقونة
-                    color: Colors.black,
-                  ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context); // العودة للصفحة السابقة
+                },
+                icon: const Icon(
+                  Icons.arrow_back,
+                  size: 40, // حجم أكبر للأيقونة
+                  color: Color.fromARGB(255, 238, 184, 59),
                 ),
-                // زر الإعدادات
-                IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/settings'); // الانتقال إلى صفحة الإعدادات
-                  },
-                  icon: const Icon(
-                    Icons.settings,
-                    size: 40,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
           // المحتوى
           Column(
             children: [
-              const SizedBox(height: 80), // مسافة من الأعلى
-              
+              const SizedBox(height: 100), // مسافة من الأعلى
+              Center(
+                child: const Text(
+                  ' قائمة الالعاب  ',
+                  style: TextStyle(
+                    fontSize: 35, // حجم النص
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 20, 85, 129), // لون النص
+                    shadows: [
+                      Shadow(
+                        offset: Offset(2, 2),
+                        blurRadius: 5,
+                        color: Colors.black26, // تأثير الظل
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               const SizedBox(height: 40), // مسافة بين النص والمربعات
               // الألعاب في صف واحد
               Expanded(
@@ -159,7 +161,7 @@ class GameCard extends StatelessWidget {
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: Colors.black, // لون النص
+              color: Colors.black, // لون النص: أسود
             ),
             textAlign: TextAlign.center,
           ),

@@ -62,7 +62,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           // الخلفية البيضاء
           Positioned.fill(
             child: Container(
-              color: Colors.white,
+              color: const Color.fromARGB(255, 255, 255, 255),
             ),
           ),
           // السهم العلوي
@@ -76,7 +76,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 icon: Icon(
                   Icons.arrow_back,
                   size: 60, // تكبير السهم
-                  color: Color(0xFFFFD54F), // لون السهم (أصفر)
+                  color: Color.fromARGB(255, 152, 234, 185), // لون السهم (أصفر)
                 ),
               ),
             ),
@@ -113,7 +113,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 // تحديث بيانات المستخدم
                 Card(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  color: Color(0xFFFFD54F), // لون أصفر فاتح
+                  color: const Color(0xFFB2DFDB), // لون المربع 
                   elevation: 5,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -123,7 +123,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'تحديث البيانات الشخصية',
+                            ' البيانات الشخصية',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -161,7 +161,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ElevatedButton(
                             onPressed: _updateUserData,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFF42A5F5), // لون أزرق
+                              backgroundColor: Color.fromARGB(255, 151, 199, 223), // لون أزرق
                               padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                             ),

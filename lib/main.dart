@@ -38,12 +38,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ساجـر',
+      title: 'Autism App',
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/parent_login',
+      initialRoute: '/home',
       routes: {
         '/login': (context) => LoginScreen(),
         '/register': (context) => RegistrationScreen(),
@@ -55,8 +55,7 @@ class MyApp extends StatelessWidget {
         '/picture_sentence': (context) => SentenceBuildingGameScreen(),
         '/gameslist': (context) => GamesListScreen(),
         '/storieslist': (context) => StoriesListScreen(),
-           '/number_drawing': (context) =>
-            NumbersLearningGame(), // إضافة اللعبة الجديدة
+        '/number_drawing': (context) => NumbersLearningGame(), // إضافة اللعبة الجديدة
         '/settings': (context) => SettingsScreen(),
         '/progress': (context) => ProgressScreen(),
         '/parent_login': (context) => ParentLoginScreen(),

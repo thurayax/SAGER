@@ -36,12 +36,17 @@ flutter:
     - assets/images/Ellipse 25.png
     - assets/images/hstory.png
     - assets/images/hgames.png
-    - assets/images/sajerlogo.png
+    - assets/images/logoSager.png
     - assets/images/sa.png
     - assets/images/A.png
     - assets/images/m.png
     - assets/images/num.png
     - assets/images/learning.png
+    - assets/images/avatar.jpg
+    - assets/images/تتبع.png
+    - assets/images/شات.png
+    - assets/images/اعدادات.png
+
 
     # الصور للقصص
     - assets/images/forest.png
@@ -50,3 +55,14 @@ flutter:
 
     # مفتاح Dialogflow
     - assets/dialogflow_key.json
+
+
+    # sound 
+    - assets/sounds/welcome.mp3
+
+    # sentence_game
+    - assets/images/sentence_game/
+
+    # arabic_learning_game
+    - assets/images/arabic_learning_game/
+

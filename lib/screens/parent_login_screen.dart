@@ -29,67 +29,109 @@ class _ParentLoginScreenState extends State<ParentLoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              'أدخل رمز الدخول',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      body: Container(
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFFE7F3FA),
+              Color(0xFFB1D8E8),
+            ],
+          ),
+        ),
+        child: Center(
+          child: Container(
+            padding: const EdgeInsets.all(20.0),
+            width: 350,
+            decoration: BoxDecoration(
+              color: const Color(0xFF719E8F),
+              borderRadius: BorderRadius.circular(20),
             ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(4, (index) {
-                return Container(
-                  margin: const EdgeInsets.all(8.0),
-                  width: 15,
-                  height: 15,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: index < _inputPin.length
-                        ? Colors.blue
-                        : Colors.grey.shade300,
-                  ),
-                );
-              }),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: TextField(
-                controller: _pinController,
-                keyboardType: TextInputType.number,
-                maxLength: 4,
-                obscureText: true,
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  hintText: '••••',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'أدخل رمز الدخول',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    _inputPin = value;
-                  });
-                },
-              ),
+                const SizedBox(height: 20),
+
+                // Pin Field
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(4, (index) {
+                    return Container(
+                      margin: const EdgeInsets.all(8.0),
+                      width: 15,
+                      height: 15,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: index < _inputPin.length
+                            ? const Color(0xFF0663A0) // Updated color code
+                            : Colors.grey.shade300,
+                      ),
+                    );
+                  }),
+                ),
+                const SizedBox(height: 20),
+                TextField(
+                  controller: _pinController,
+                  keyboardType: TextInputType.number,
+                  maxLength: 4,
+                  obscureText: true,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    hintText: '••••',
+                    hintStyle: const TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.normal),
+                    filled: true,
+                    fillColor: const Color(0xFF709E8F),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide:
+                          const BorderSide(color: Colors.white, width: 1),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide:
+                          const BorderSide(color: Colors.white, width: 1),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      _inputPin = value;
+                    });
+                  },
+                ),
+                const SizedBox(height: 20),
+
+                // Submit Button
+                ElevatedButton(
+                  onPressed: _verifyPin,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF527566),
+                    minimumSize: const Size(double.infinity, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: const Text(
+                    'إرسال',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _verifyPin,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-              ),
-              child: const Text(
-                'إرسال',
-                style: TextStyle(fontSize: 18, color: Colors.white),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
