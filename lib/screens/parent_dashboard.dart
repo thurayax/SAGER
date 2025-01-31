@@ -16,7 +16,12 @@ class ParentDashboard extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-        color: Color(0xFFB8E1FC), // استخدام اللون الثابت مثل الكود المرفق
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/Blue.png"), // ضع هنا مسار الخلفية
+            fit: BoxFit.cover, // تغطية الخلفية بالكامل
+          ),
+        ),
         padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +89,7 @@ class ParentDashboard extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 40,
-            backgroundColor: Color(0xFFB8E1FC), // استخدام نفس لون الخلفية
+            backgroundColor: Colors.white.withOpacity(0.7), // لون خلفية الأيقونة نصف شفاف
             child: imagePath != null
                 ? Image.asset(imagePath, fit: BoxFit.cover)
                 : Icon(icon, size: 40, color: Colors.teal.shade700),

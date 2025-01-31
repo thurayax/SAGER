@@ -10,9 +10,8 @@ class ProgressScreen extends StatefulWidget {
 
 class _ProgressScreenState extends State<ProgressScreen> {
   List<Map<String, dynamic>> gameProgress = [];
-  double totalDuration = 0; // إجمالي مدة اللعب
-  ApiService apiService = ApiService(); // خدمة API
-  String recommendation = ''; // لتخزين التوصية
+  double totalDuration = 0;
+  ApiService apiService = ApiService();
 
   @override
   void initState() {
@@ -26,7 +25,6 @@ class _ProgressScreenState extends State<ProgressScreen> {
     });
   }
 
-  // استرجاع بيانات التقدم من قاعدة البيانات
   Future<List<Map<String, dynamic>>> fetchGameProgress() async {
     try {
       final response = await Supabase.instance.client
@@ -43,76 +41,42 @@ class _ProgressScreenState extends State<ProgressScreen> {
     return [];
   }
 
-  // جلب التوصيات من API
-  void fetchRecommendation() async {
-    try {
-      final data = {
-        "duration": 45,
-        "attempts": 10,
-        "successes": 8,
-        "failures": 2,
-      };
-      final result = await apiService.getRecommendation(data);
-      setState(() {
-        recommendation = result.toString();
-      });
-    } catch (error) {
-      print('Error: $error');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "تقدم الطفل",
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: const Color(0xFF709E8F),
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Stack(
         children: [
-          // الخلفية
           Positioned.fill(
             child: Image.asset(
               'assets/images/Blue and Green.png',
               fit: BoxFit.cover,
             ),
           ),
-          // السهم العلوي
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pop(context); // العودة إلى الصفحة السابقة
-                },
-                icon: Icon(
-                  Icons.arrow_back,
-                  size: 60, // تكبير السهم
-                  color: const Color(0xFFFFC107), // اللون الأصفر
-                ),
-              ),
-            ),
-          ),
-          // المحتوى
           SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 80), // مسافة بين السهم والمحتوى
-                Center(
-                  child: Text(
-                    'تقدم الطفل',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xFF42A5F5), // اللون الأزرق
-                    ),
-                  ),
-                ),
                 const SizedBox(height: 20),
-
-                // إحصائيات مباشرة
                 Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12)),
-                  color: const Color(0xFFFFF9C4), // خلفية صفراء فاتحة
+                  color: const Color(0xFFFFF9C4),
                   elevation: 5,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -122,7 +86,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                         Text(
                           'إحصائيات اللعب',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 25,
                             fontWeight: FontWeight.bold,
                             color: Colors.black87,
                           ),
@@ -137,12 +101,10 @@ class _ProgressScreenState extends State<ProgressScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-
-                // رسم بياني عمودي
                 Text(
                   'الوقت الذي أمضاه الطفل في كل لعبة (بالدقائق)',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
                     color: const Color(0xFF42A5F5),
                   ),
@@ -195,44 +157,6 @@ class _ProgressScreenState extends State<ProgressScreen> {
                   ),
                 ),
                 const SizedBox(height: 30),
-
-                // زر للحصول على التوصيات
-                Center(
-                  child: ElevatedButton(
-                    onPressed: fetchRecommendation,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFFFC107), // لون الزر
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 30,
-                        vertical: 16,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: const Text(
-                      'الحصول على التوصية',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-                if (recommendation.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: Center(
-                      child: Text(
-                        'نوصي بـ: $recommendation',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xFF42A5F5),
-                        ),
-                      ),
-                    ),
-                  ),
               ],
             ),
           ),

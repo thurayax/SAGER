@@ -46,6 +46,9 @@ flutter:
     - assets/images/تتبع.png
     - assets/images/شات.png
     - assets/images/اعدادات.png
+    # المحاكاة 
+    - assets/images/good_behavior.jpg
+    - assets/images/bad_behavior.jpg
 
 
     # الصور للقصص

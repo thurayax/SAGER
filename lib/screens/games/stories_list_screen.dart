@@ -1,30 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 import 'story.dart';
+import 'story_game_screen.dart';
 
 class StoriesListScreen extends StatelessWidget {
   final List<Story> stories = [
     Story(
       title: 'رحلة اكتشاف غابة السر',
       imagePath: 'assets/images/forest.png',
-      content: '''
-      كان يا مكان في قديم الزمان، في قرية صغيرة...
-      ''',
+      content: '''كان يا مكان في قديم الزمان، في قرية صغيرة تحيط بها الجبال والغابات، عاش ثلاثة أصدقاء مقربين: سامي، سند، ومالك. كانوا دائمًا يهوون المغامرات والاكتشافات...
+
+ذات يوم، بينما كانوا يلعبون قرب أطراف القرية، سمعوا قصة من أحد كبار السن عن "غابة السر"، وهي غابة مليئة بالأسرار والعجائب، ولكن لا يستطيع الوصول إلى قلبها إلا الأصدقاء الحقيقيون الذين يتعاونون ولا يتخلون عن بعضهم. قرر الأصدقاء أن يخوضوا هذه المغامرة ويكتشفوا أسرار الغابة...
+
+في صباح اليوم التالي، انطلقوا حاملين حقيبة صغيرة فيها طعام وبعض الأدوات. عندما اقتربوا من الغابة، لاحظوا أنها مختلفة تمامًا عن الغابات الأخرى. كانت الأشجار طويلة جدًا، وكأنها تهمس لهم، وكان الهواء مليئًا برائحة الزهور الغريبة...
+
+بعد انتهاء التحديات، ظهرت شجرة ذهبية تتلألأ في ضوء الشمس وقالت لهم: "لقد أظهرتم الشجاعة، التعاون، والعطاء. هذه هي أسرار النجاح والسعادة. خذوا من ثماري، فهي تمنح القوة والحكمة لمن يشاركونها مع الآخرين."''',
+      audioPath: 'assets/audio/forest_story.mp3',
     ),
     Story(
       title: 'الأصدقاء',
       imagePath: 'assets/images/friends.png',
-      content: '''
-      في قرية صغيرة هادئة تحيط بها الحقول الخضراء...
-      ''',
+      content: '''في قرية صغيرة هادئة تحيط بها الحقول الخضراء والأشجار العالية، كانت هناك سبع صديقات مقربات: أروى، ضحى، مروة، شروق، جمانة، جنى، وإيثار...
+
+ذات يوم، وبينما كانت الصديقات يلعبن بالقرب من حقل مليء بالأزهار، اقترحن القيام بنشاط ممتع. قررت أروى أن ترسم صورة على الأرض باستخدام أغصان الأشجار الصغيرة، وبدأت بحماس كبير. لكن جمانة كانت ترغب في استخدام نفس المكان لتصنع شكلًا لقوس قزح من الزهور الملونة...
+
+بعد خلاف صغير، قررت الصديقات كتابة ذكرياتهن الجميلة وتعليقها على الشجرة الكبيرة التي يجتمعن تحتها دائمًا. وعندما شاهدت أروى وجمانة هذا الجهد، تصالحا، وأدرك الجميع أن الصداقة أهم من أي خلاف.''',
+      audioPath: 'assets/audio/friends_story.mp3',
     ),
     Story(
-      title: 'رحلة إلى المملكة الساحرة',
-      imagePath: 'assets/images/kingdom.png',
-      content: '''
-      كان يا ما كان، في قديم الزمان، في قرية صغيرة...
-      ''',
-    ),
+  title: 'رحلة إلى المملكة الساحرة',
+  imagePath: 'assets/images/kingdom.png',
+  content: '''كان يا ما كان، في قديم الزمان، في قرية صغيرة تحيط بها الجبال، كان هناك أربعة أصدقاء يحبون المغامرات والقصص الغامضة. كانوا سارة، وليلى، وعمر، وكريم.
+
+في أحد الأيام، وبينما كانوا يستكشفون مكتبة القرية القديمة، عثروا على صندوق خشبي صغير. فتح كريم الصندوق ليجدوا بداخله خريطة قديمة تشير إلى مكان بعيد يُدعى "المملكة الساحرة".
+
+قرر الأصدقاء أن ينطلقوا في مغامرة لاكتشاف هذه المملكة. مع شروق الشمس، جهزوا حقيبة صغيرة تحتوي على بعض الطعام والماء، وبدأوا رحلتهم. ساروا عبر غابات خضراء ومروا على أنهار صافية حتى وصلوا إلى بوابة ضخمة مغطاة بالزهور المتلألئة.
+
+على البوابة، كان مكتوبًا: "مرحبًا بكم في المملكة الساحرة، حيث كل شيء يتحدث!" نظر الأصدقاء إلى بعضهم بدهشة، ثم دفع عمر البوابة بحذر. فور دخولهم، فوجئوا بكل ما حولهم يتحدث! الأشجار تلوح بأغصانها وتقول: "مرحبًا، أيها الأصدقاء!"، الزهور تهمس بلطف: "ما أجمل يومكم!"، وحتى النهر كان يغني بصوت هادئ.
+
+اقتربت منهم فراشة ملونة، وقالت بصوت ناعم: "مرحبًا أيها المغامرون! إذا أردتم معرفة أسرار المملكة والحصول على هديتها، فعليكم تجاوز ثلاثة تحديات."
+
+قبل الأصدقاء التحدي بحماس، وبدأوا مغامرتهم داخل المملكة الساحرة.
+
+في التحدي الأول، قادتهم الفراشة إلى بحيرة جميلة تحيط بها زهور بألوان مختلفة. تحدثت زهرة بنفسجية وسألتهم: "ما اللون الذي يجمع بيننا جميعًا؟" فكر الأصدقاء قليلًا، ثم قالت سارة: "الأخضر، لأنه لون الطبيعة التي نعيش فيها جميعًا." أجابت الزهرة بسعادة: "صحيح!"، وبدأت الزهور تضيء وكأنها تحتفل بإجابتهم.
+
+في التحدي الثاني، وصلوا إلى شجرة ضخمة بأغصان ممتدة. قالت لهم الشجرة بصوت عميق: "لتنجحوا في هذا التحدي، عليكم أن تغنوا أغنية تجعل الغابة سعيدة." بدأ كريم يغني بصوت عالٍ، وانضمت إليه سارة، ثم عمر وليلى. كان غناؤهم بسيطًا ولكنه مليء بالفرح. انضمت الغابة كلها إليهم، الطيور تغرد، الأوراق تصفق، والنهر يكمل الأغنية بصوته الجميل.
+
+أما في التحدي الثالث، فقد قادتهم الفراشة إلى طائر ذهبي كان ينتظرهم. قال لهم الطائر: "هنا هديتكم، لكنها هدية يجب أن تُستخدم لنشر الخير." قدم لهم صندوقًا صغيرًا، وعندما فتحوه، وجدوا فيه بذورًا ذهبية. قال عمر: "علينا زراعتها هنا!"، ووافقه الجميع. زرعوا البذور، وفجأة نمت أشجار رائعة مليئة بالفواكه التي بدأت تتحدث بلطف، تدعو الجميع لتذوقها.
+
+بعد انتهاء التحديات، ظهر نسر ضخم وجميل في السماء، وهبط أمامهم. قال النسر بصوت هادئ: "لقد أثبتم أنكم أصدقاء حقيقيون للمملكة الساحرة. ستظل أبواب المملكة مفتوحة لكم دائمًا." عاد الأصدقاء إلى قريتهم، محملين بذكريات لا تُنسى عن المملكة الساحرة.
+
+ومنذ ذلك اليوم، كانوا يروون قصتهم لكل من يقابلونه، لينقلوا درسًا بسيطًا: بالتعاون واللطف، يمكننا أن نعيش أجمل المغامرات ونكتشف العجائب.''',
+  audioPath: 'assets/audio/kingdom_story.mp3',
+),
   ];
 
   @override
@@ -33,10 +60,7 @@ class StoriesListScreen extends StatelessWidget {
       body: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset(
-              'assets/images/Blue and Green.png',
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset('assets/images/Blue.png', fit: BoxFit.cover),
           ),
           SafeArea(
             child: Padding(
@@ -47,7 +71,7 @@ class StoriesListScreen extends StatelessWidget {
                 },
                 icon: const Icon(
                   Icons.arrow_back,
-                  size: 60,
+                  size: 50,
                   color: Color.fromARGB(255, 238, 184, 59),
                 ),
               ),
@@ -55,22 +79,11 @@ class StoriesListScreen extends StatelessWidget {
           ),
           Column(
             children: [
-              const SizedBox(height: 100), // مسافة من الأعلى
-              Center(
-                child: const Text(
-                  'قائمة القصص ',
-                  style: TextStyle(
-                    fontSize: 35, // حجم النص
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 20, 85, 129), // لون النص
-                    shadows: [
-                      Shadow(
-                        offset: Offset(2, 2),
-                        blurRadius: 5,
-                        color: Colors.black26, // تأثير الظل
-                      ),
-                    ],
-                  ),
+              const SizedBox(height: 100),
+              const Center(
+                child: Text(
+                  'قائمة القصص',
+                  style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 20, 85, 129)),
                 ),
               ),
               const SizedBox(height: 40),
@@ -83,13 +96,11 @@ class StoriesListScreen extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => StoryBookScreen(story: story),
-                            ),
+                            MaterialPageRoute(builder: (context) => StoryGameScreen(story: story)),
                           );
                         },
                         child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 20),
+                          margin: const EdgeInsets.symmetric(horizontal: 10),
                           width: 200,
                           height: 300,
                           decoration: BoxDecoration(
@@ -106,6 +117,13 @@ class StoriesListScreen extends StatelessWidget {
                               ),
                             ],
                           ),
+                          child: Center(
+                            child: Icon(
+                              Icons.audiotrack,
+                              size: 30,
+                              color: Colors.blue,
+                            ),
+                          ),
                         ),
                       );
                     }).toList(),
@@ -117,134 +135,5 @@ class StoriesListScreen extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class StoryBookScreen extends StatefulWidget {
-  final Story story;
-
-  const StoryBookScreen({Key? key, required this.story}) : super(key: key);
-
-  @override
-  _StoryBookScreenState createState() => _StoryBookScreenState();
-}
-
-class _StoryBookScreenState extends State<StoryBookScreen> {
-  final FlutterTts _flutterTts = FlutterTts();
-  late List<String> _storyPages;
-  int _currentPage = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _storyPages = widget.story.content.split("\n\n");
-  }
-
-  void _speak(String text) async {
-    await _flutterTts.setLanguage("ar");
-    await _flutterTts.setSpeechRate(0.5);
-    await _flutterTts.speak(text);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.story.title),
-        backgroundColor: Colors.blue[200],
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-      body: PageView.builder(
-        itemCount: _storyPages.length,
-        onPageChanged: (index) {
-          setState(() {
-            _currentPage = index;
-          });
-        },
-        itemBuilder: (context, index) {
-          return Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.blue.shade100, Colors.green.shade100],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Image.asset(
-                        widget.story.imagePath,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Expanded(
-                    flex: 4,
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.3),
-                            spreadRadius: 2,
-                            blurRadius: 5,
-                          ),
-                        ],
-                      ),
-                      child: SingleChildScrollView(
-                        child: Text(
-                          _storyPages[index],
-                          style: const TextStyle(
-                            fontSize: 18,
-                            height: 1.6,
-                            color: Colors.black87,
-                          ),
-                          textAlign: TextAlign.justify,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        icon: const Icon(Icons.volume_up, color: Colors.blue),
-                        onPressed: () => _speak(_storyPages[index]),
-                      ),
-                      Text(
-                        "الصفحة ${index + 1} من ${_storyPages.length}",
-                        style: const TextStyle(fontSize: 16, color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _flutterTts.stop();
-    super.dispose();
   }
 }
