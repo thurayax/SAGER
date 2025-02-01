@@ -1,44 +1,77 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:autism_app/screens/parent_login_screen.dart'; // استيراد صفحة تسجيل دخول الآباء
+import 'package:autism_app/screens/parent_login_screen.dart';
+import 'package:just_audio/just_audio.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String userName = "بكم"; // الاسم الافتراضي
+  final AudioPlayer _audioPlayer = AudioPlayer(); // مشغل الصوت الجديد
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+    _playWelcomeSound(); // تشغيل الصوت عند فتح الصفحة
+  }
+
+  Future<void> _loadUserData() async {
+    final user = Supabase.instance.client.auth.currentUser;
+    if (user != null) {
+      final metadata = user.userMetadata;
+      setState(() {
+        userName = metadata?['full_name'] ?? "بكم";
+      });
+    }
+  }
+
+  Future<void> _playWelcomeSound() async {
+    try {
+      await _audioPlayer.setAsset('assets/audio/welcome.mp3'); // تحميل الملف
+      await _audioPlayer.play(); // تشغيل الصوت
+    } catch (e) {
+      print("❌ خطأ في تشغيل الصوت: $e");
+    }
+  }
+
   void logout(BuildContext context) async {
     await Supabase.instance.client.auth.signOut();
     Navigator.pushReplacementNamed(context, '/login');
   }
 
   @override
-  Widget build(BuildContext context) {
-    final user = Supabase.instance.client.auth.currentUser;
+  void dispose() {
+    _audioPlayer.dispose(); // إيقاف المشغل عند الخروج
+    super.dispose();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          // الخلفية
           Positioned.fill(
             child: Image.asset(
-              'assets/images/Blue and Green.png', // الخلفية
+              'assets/images/Blue and Green.png',
               fit: BoxFit.cover,
             ),
           ),
-
-          // المحتوى الرئيسي
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // صورة الشعار
                 Image.asset(
-                  'assets/images/logoSager.png', // الشعار
+                  'assets/images/logoSager.png',
                   width: 300,
                   height: 300,
                 ),
                 const SizedBox(height: 2),
-
-                // نص الترحيب
                 Text(
-                  'اهلا بكم في تطبيق ساجر ${user?.email ?? ""}',
+                  'أهلاً $userName في تطبيق ساجر',
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -46,8 +79,6 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-
-                // زر التشغيل
                 ElevatedButton(
                   onPressed: () => Navigator.pushNamed(context, '/games'),
                   style: ElevatedButton.styleFrom(
@@ -64,24 +95,21 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-
-          // أيقونة على شكل شخصية للانتقال إلى صفحة الآباء
           Positioned(
             top: 40,
-            right: 20, // تغيير الخاصية من left إلى right
+            right: 20,
             child: GestureDetector(
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ParentLoginScreen(), // الربط بالصفحة
+                    builder: (context) => ParentLoginScreen(),
                   ),
                 );
               },
               child: CircleAvatar(
-                radius: 30, // حجم الأيقونة
-                backgroundImage:
-                    AssetImage('assets/images/avatar.jpg'), // صورة الشخصية
+                radius: 30,
+                backgroundImage: AssetImage('assets/images/avatar.jpg'),
               ),
             ),
           ),

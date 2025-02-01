@@ -19,6 +19,7 @@ dependencies:
   fl_chart: ^0.70.1
   http: ^0.13.6
   dialog_flowtter: ^0.3.3
+  just_audio: ^0.9.44
 
 dev_dependencies:
   flutter_test:
