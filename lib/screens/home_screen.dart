@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _playWelcomeSound() async {
     try {
-      await _audioPlayer.setAsset('assets/audio/welcome.mp3'); // تحميل الملف
+      await _audioPlayer.setAsset('assets/sounds/welcome.mp3'); // تحميل الملف
       await _audioPlayer.play(); // تشغيل الصوت
     } catch (e) {
       print("❌ خطأ في تشغيل الصوت: $e");
