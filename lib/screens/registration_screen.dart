@@ -16,68 +16,74 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  // دالة التحقق من الاسم
+  // Name validation function
   String? _validateName(String? value) {
     if (value == null || value.isEmpty) {
       return 'يرجى إدخال الاسم';
     }
+
+    // Regular expression for validating only letters (Arabic and English)
     final nameRegex = RegExp(r'^[a-zA-Z\u0600-\u06FF ]+$');
+
     if (!nameRegex.hasMatch(value)) {
-      return 'يجب أن يحتوي الاسم على أحرف فقط';
+      return ' يجب أن يحتوي الاسم على أحرف فقط';
     }
     return null;
   }
 
-  // دالة التحقق من البريد الإلكتروني
+  // Email validation function
   String? _validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'يرجى إدخال البريد الإلكتروني';
     }
+
+    // Regular expression for validating email
     final emailRegex = RegExp(
       r'^[a-zA-Z0-9]+([._-]?[a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+$',
     );
+
     if (!emailRegex.hasMatch(value)) {
       return 'يرجى إدخال بريد إلكتروني صحيح';
     }
     return null;
   }
 
-  // دالة التحقق من كلمة المرور
+  // Password validation function
   String? _validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return 'يرجى إدخال كلمة المرور';
     }
+
+    // Password requirements
     final passwordRegex = RegExp(
       r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#\$&*~]).{8,16}$',
     );
+
     if (!passwordRegex.hasMatch(value)) {
-      return 'يجب أن تحتوي كلمة المرور على:\n'
-          '- 8-16 حرفًا\n'
-          '- حرف كبير وصغير\n'
-          '- رقم واحد على الأقل\n'
-          '- رمز خاص مثل !@#\$&*~';
+      return 'الحد الأدنى لكلمة المرور (8-16 حرف بالإنجليزية) \n :يجب أن تتضمن \n أحرف كبيرة وصغيرة \n أرقام \n رموز (مثل: ! , # , @)';
     }
     return null;
   }
 
-  // دالة التسجيل باستخدام Supabase
+  // Register method using Supabase
   Future<void> register(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       try {
         final response = await Supabase.instance.client.auth.signUp(
           email: emailController.text,
           password: passwordController.text,
-          data: {'full_name': nameController.text}, // تخزين الاسم
+          data: {'name': nameController.text},
         );
 
         if (response.user != null) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('تم إنشاء الحساب بنجاح!')),
           );
-          Navigator.pop(context); // الرجوع إلى شاشة تسجيل الدخول
-        } else {
+          Navigator.pop(context); // Navigate back to login
+        } else if (response.session == null) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('فشل إنشاء الحساب. حاول مرة أخرى.')),
+            const SnackBar(
+                content: Text('فشل إنشاء الحساب. يرجى المحاولة مرة أخرى.')),
           );
         }
       } on AuthException catch (e) {
@@ -101,7 +107,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFFE7F3FA), Color(0xFFB1D8E8)],
+            colors: [
+              Color(0xFFE7F3FA),
+              Color(0xFFB1D8E8),
+            ],
           ),
         ),
         child: Center(
@@ -127,74 +136,124 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   const SizedBox(height: 20),
 
-                  // حقل الاسم
+                  // Name Field
                   TextFormField(
                     controller: nameController,
+                    textAlign: TextAlign.right,
                     decoration: InputDecoration(
-                      hintText: 'الاسم الكامل',
+                      hintText: 'الاسم',
+                      hintStyle: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal,
+                      ),
                       filled: true,
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(
+                      fillColor: const Color(0xFF709E8F),
+                      enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
+                        borderSide:
+                            const BorderSide(color: Colors.white, width: 1),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide:
+                            const BorderSide(color: Colors.white, width: 1),
                       ),
                     ),
-                    validator: _validateName,
+                    validator: _validateName, // Name validation
                   ),
                   const SizedBox(height: 15),
 
-                  // حقل البريد الإلكتروني
+                  // Email Field
                   TextFormField(
                     controller: emailController,
+                    textAlign: TextAlign.right,
                     decoration: InputDecoration(
                       hintText: 'البريد الإلكتروني',
+                      hintStyle: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal,
+                      ),
                       filled: true,
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(
+                      fillColor: const Color(0xFF709E8F),
+                      enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
+                        borderSide:
+                            const BorderSide(color: Colors.white, width: 1),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide:
+                            const BorderSide(color: Colors.white, width: 1),
                       ),
                     ),
-                    validator: _validateEmail,
+                    validator: _validateEmail, // Email validation
                   ),
                   const SizedBox(height: 15),
 
-                  // حقل كلمة المرور
+                  // Password Field
                   TextFormField(
                     controller: passwordController,
+                    textAlign: TextAlign.right,
                     obscureText: !_isPasswordVisible,
                     decoration: InputDecoration(
                       hintText: 'كلمة المرور',
+                      hintStyle: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal,
+                      ),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: const Color(0xFF709E8F),
                       prefixIcon: IconButton(
-                        icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                        icon: Icon(
+                          _isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.white,
+                        ),
                         onPressed: () {
                           setState(() {
                             _isPasswordVisible = !_isPasswordVisible;
                           });
                         },
                       ),
-                      border: OutlineInputBorder(
+                      enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
+                        borderSide:
+                            const BorderSide(color: Colors.white, width: 1),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide:
+                            const BorderSide(color: Colors.white, width: 1),
                       ),
                     ),
-                    validator: _validatePassword,
+                    validator: _validatePassword, // Password validation
                   ),
                   const SizedBox(height: 20),
 
-                  // زر التسجيل
+                  // Sign Up Button
                   ElevatedButton(
-                    onPressed: () => register(context),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF527566),
+                      minimumSize: const Size(double.infinity, 50),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: const Text('إنشاء حساب', style: TextStyle(color: Colors.white)),
+                    onPressed: () {
+                      register(context);
+                    },
+                    child: const Text(
+                      'إنشاء حساب',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.normal),
+                    ),
                   ),
                   const SizedBox(height: 15),
 
-                  // رابط تسجيل الدخول
+                  // Login Prompt
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -202,12 +261,27 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const LoginScreen()),
+                            MaterialPageRoute(
+                                builder: (context) => const LoginScreen()),
                           );
                         },
-                        child: const Text('سجّل الدخول', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          onHover: (_) {
+                            setState(() {});
+                          },
+                          child: Text(
+                            'سجّل الدخول',
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
                       ),
-                      const Text(' لديك حساب بالفعل؟ ', style: TextStyle(color: Colors.white)),
+                      const Text(
+                        ' لديك حساب بالفعل؟ ',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ],
                   ),
                 ],
