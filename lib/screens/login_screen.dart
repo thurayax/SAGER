@@ -17,6 +17,20 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
 
+  @override
+  void initState() {
+    super.initState();
+    _checkSession();
+  }
+
+  Future<void> _checkSession() async {
+    final session = Supabase.instance.client.auth.currentSession;
+    if (session != null) {
+      // Session is valid, navigate to home screen
+      Navigator.pushReplacementNamed(context, '/home');
+    }
+  }
+
   Future<void> login(BuildContext context) async {
     try {
       final AuthResponse response =
@@ -211,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 15),
 
-                  // Forgot Password
+                  /* Forgot Password
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -238,7 +252,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ],
-                  ),
+                  ),*/
 
                   // Signup Prompt
                   Row(
